@@ -1,12 +1,22 @@
-const container = document.querySelector('#container');
+const grid = document.querySelector('#grid');
 
-function createBoxes(numBox) {
-    container.style.gridTemplateColumns = `repeat(${numBox}, 1fr)`;
-    for (let i = 0; i < numBox * numBox; i++) {
+let size = 16;
+
+function createGrid(size) {
+    grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+    grid.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+
+    for (let i = 0; i < size * size; i++) {
         const square = document.createElement('div');
-        square.classList.add('box');
-        container.appendChild(square);
+        square.classList.add('square');
+        square.addEventListener('mouseover', changeColor);
+        square.addEventListener('mousedown', changeColor);
+        grid.appendChild(square);
     }
 }
 
-createBoxes(2);
+function changeColor(e) {
+    e.target.style.backgroundColor = "#000000";
+}
+
+createGrid(size);
