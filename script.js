@@ -1,22 +1,27 @@
+const DEFAULT_SIZE = 16;
+
 const grid = document.querySelector('#grid');
 const gridSizeBtn = document.querySelector('#gridSizeBtn');
 const status = document.querySelector('#status');
 
 gridSizeBtn.addEventListener('click', getGridSize);
 
-let size = 16;  // default grid height and width size
+let mouseDown = false;
+document.body.onmousedown = () => (mouseDown = true);
+document.body.onmouseup = () => (mouseDown = false);
 
 function getGridSize() {
     let text;
+    let size;
     size = prompt("Enter the number of squares per side for the new grid (from 16 - 100):", "16");
     if (size == null || size == "" || size < 16 || size > 100) {
-        size = 16;
+        DEFAULT_SIZE = 16;
         text = "Using default number of squares: 16.";
     } else {
-        text = "Creating new grid with " + size + " squares per side...";
+        text = "Creating a " + size + " by " + size + " grid...";
     }
     document.querySelector('#status').textContent = text;
-    grid.innerHTML = '';
+    grid.innerHTML = '';    // reset grid for generating new one
     createGrid(size);
 }
 
@@ -34,7 +39,8 @@ function createGrid(size) {
 }
 
 function changeColor(e) {
+    if (e.type === 'mouseover' && !mouseDown) return;
     e.target.style.backgroundColor = "#000000";
 }
 
-createGrid(size);
+createGrid(DEFAULT_SIZE);
