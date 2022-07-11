@@ -1,6 +1,6 @@
 const grid = document.querySelector('#grid');
 const gridSizeBtn = document.querySelector('#gridSizeBtn');
-//const status = document.querySelector('#status');
+const status = document.querySelector('#status');
 
 gridSizeBtn.addEventListener('click', getGridSize);
 
