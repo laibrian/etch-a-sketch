@@ -15,10 +15,10 @@ function getGridSize() {
     let size;
     size = prompt("Enter the number of squares per side for the new grid (from 16 - 100):", "16");
     if (size == null || size == "" || size < 16 || size > 100) {
-        DEFAULT_SIZE = 16;
-        text = "Using default number of squares: 16.";
+        text = "Invalid size input! Creating default 16 x 16 grid.";
+        size = DEFAULT_SIZE;
     } else {
-        text = "Creating a " + size + " by " + size + " grid...";
+        text = "Creating a " + size + " x " + size + " grid...";
     }
     document.querySelector('#status').textContent = text;
     grid.innerHTML = '';    // reset grid for generating new one
