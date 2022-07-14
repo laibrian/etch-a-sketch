@@ -1,8 +1,13 @@
 const DEFAULT_SIZE = 16;
 
+let size =  DEFAULT_SIZE;
+
 const grid = document.querySelector('#grid');
 const gridSizeBtn = document.querySelector('#gridSizeBtn');
+const clearBtn = document.querySelector('#clearBtn');
 const status = document.querySelector('#status');
+
+clearBtn.onclick = () => resetGrid();
 
 gridSizeBtn.addEventListener('click', getGridSize);
 
@@ -10,9 +15,13 @@ let mouseDown = false;
 document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
 
+function resetGrid() {
+    grid.innerHTML = '';
+    createGrid(size);
+}
+
 function getGridSize() {
     let text;
-    let size;
     size = prompt("Enter the number of squares per side for the new grid (from 16 - 100):", "16");
     if (size == null || size == "" || size < 16 || size > 100) {
         text = "Invalid size input! Creating default 16 x 16 grid.";
@@ -21,8 +30,7 @@ function getGridSize() {
         text = "Creating a " + size + " x " + size + " grid...";
     }
     document.querySelector('#status').textContent = text;
-    grid.innerHTML = '';    // reset grid for generating new one
-    createGrid(size);
+    resetGrid(size);
 }
 
 function createGrid(size) {
