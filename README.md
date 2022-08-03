@@ -1,4 +1,7 @@
 # etch-a-sketch
+
+Live Demo: https://laibrian.github.io/etch-a-sketch/
+
 Program that allows the user to draw pixels onto a blank grid using the mouse.
 
 - Utilizing DOM manipulation skills
